@@ -11,6 +11,7 @@
     <modules>
         <module>Customer</module>
         <module>Farud</module>
+        <module>Eureka-Server</module>
     </modules>
 
     <properties>
@@ -19,20 +20,25 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <spring-boot-starter.version>3.3.0</spring-boot-starter.version>
         <lombok.version>1.18.28</lombok.version>
+        <spring-cloud-dependencies.version>2023.0.2</spring-cloud-dependencies.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
             <dependency>
                 <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-web</artifactId>
+                <artifactId>spring-boot-dependencies</artifactId>
                 <version>${spring-boot-starter.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
             <dependency>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-starter-data-jpa</artifactId>
-                <version>${spring-boot-starter.version}</version>
+                <groupId>org.springframework.cloud</groupId>
+                <artifactId>spring-cloud-dependencies</artifactId>
+                <version>${spring-cloud-dependencies.version}</version>
+                <type>pom</type>
+                <scope>import</scope>
             </dependency>
 
             <dependency>

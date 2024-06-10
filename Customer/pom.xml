@@ -10,7 +10,7 @@
     </parent>
 
     <groupId>ir.reyhani.customer</groupId>
-    <artifactId>Customer</artifactId>
+    <artifactId>customer</artifactId>
 
     <properties>
         <maven.compiler.source>17</maven.compiler.source>
