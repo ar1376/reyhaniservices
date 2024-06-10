@@ -1,0 +1,28 @@
+package ir.reyhani.customer.models;
+
+import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * @author Ahmadreza Reyhani
+ * @since 6/9/2024 - 1:34 PM
+ */
+
+@Data
+@Builder
+@Entity
+@NoArgsConstructor
+@AllArgsConstructor
+public class Customer {
+
+    @Id
+    @SequenceGenerator(name = "customer_id_sequence", sequenceName = "customer_id_sequence")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "customer_id_sequence")
+    private Integer id;
+    private String firstName;
+    private String lastName;
+    private String email;
+}
