@@ -10,8 +10,9 @@
     <packaging>pom</packaging>
     <modules>
         <module>Customer</module>
-        <module>Farud</module>
+        <module>Fraud</module>
         <module>Eureka-Server</module>
+        <module>Clients</module>
     </modules>
 
     <properties>
@@ -63,6 +64,10 @@
             <version>3.3.0</version>
         </dependency>
 
+        <dependency>
+            <groupId>org.springframework.cloud</groupId>
+            <artifactId>spring-cloud-starter-openfeign</artifactId>
+        </dependency>
     </dependencies>
 
 </project>

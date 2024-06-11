@@ -1,4 +1,4 @@
-package ir.reyhani.fraud.models.dto;
+package ir.reyhani.clients.dto.fraud;
 
 /**
  * @author Ahmadreza Reyhani

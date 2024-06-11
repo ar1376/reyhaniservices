@@ -1,6 +1,6 @@
 package ir.reyhani.fraud.controllers;
 
-import ir.reyhani.fraud.models.dto.FraudCheckResponse;
+import ir.reyhani.clients.dto.fraud.FraudCheckResponse;
 import ir.reyhani.fraud.services.FraudCheckService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
