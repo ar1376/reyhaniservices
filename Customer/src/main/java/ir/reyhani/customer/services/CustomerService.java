@@ -1,7 +1,9 @@
 package ir.reyhani.customer.services;
 
 import ir.reyhani.clients.dto.fraud.FraudCheckResponse;
+import ir.reyhani.clients.dto.notification.NotificationRequest;
 import ir.reyhani.clients.fraud.FraudClient;
+import ir.reyhani.clients.notification.NotificationClient;
 import ir.reyhani.customer.models.Customer;
 import ir.reyhani.customer.models.dto.CustomerRegistrationRequest;
 import ir.reyhani.customer.repositories.CustomerRepository;
@@ -13,7 +15,7 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public record CustomerService(CustomerRepository customerRepository, FraudClient fraudClient) {
+public record CustomerService(CustomerRepository customerRepository, FraudClient fraudClient, NotificationClient notificationClient) {
 
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
@@ -28,6 +30,9 @@ public record CustomerService(CustomerRepository customerRepository, FraudClient
         if (fraudCheckResponse.isFraudster()) {
             throw new IllegalStateException("Fraudster");
         }
+
+        notificationClient.sendNotification(new NotificationRequest(customer.getId(), customer.getEmail(), "Hello You Added Successfully"));
+
     }
 
 }

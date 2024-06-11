@@ -13,6 +13,7 @@
         <module>Fraud</module>
         <module>Eureka-Server</module>
         <module>Clients</module>
+        <module>Notification</module>
     </modules>
 
     <properties>
