@@ -7,7 +7,12 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 
 @EnableFeignClients(basePackages = "ir.reyhani.clients")
 @EnableDiscoveryClient
-@SpringBootApplication
+@SpringBootApplication(
+        scanBasePackages = {
+                "ir.reyhani.customer",
+                "ir.reyhani.amqp"
+        }
+)
 public class CustomerApplication {
     public static void main(String[] args) {
         SpringApplication.run(CustomerApplication.class, args);

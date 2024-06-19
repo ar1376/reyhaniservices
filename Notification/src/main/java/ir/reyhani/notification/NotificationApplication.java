@@ -6,7 +6,12 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 
 @EnableDiscoveryClient
-@SpringBootApplication
+@SpringBootApplication(
+        scanBasePackages = {
+                "ir.reyhani.notification",
+                "ir.reyhani.amqp"
+        }
+)
 public class NotificationApplication {
     public static void main(String[] args) {
         SpringApplication.run(NotificationApplication.class, args);

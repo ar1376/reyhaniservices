@@ -1,5 +1,6 @@
 package ir.reyhani.customer.services;
 
+import ir.reyhani.amqp.producers.RabbitMQMessageProducer;
 import ir.reyhani.clients.dto.fraud.FraudCheckResponse;
 import ir.reyhani.clients.dto.notification.NotificationRequest;
 import ir.reyhani.clients.fraud.FraudClient;
@@ -15,7 +16,9 @@ import org.springframework.stereotype.Service;
  */
 
 @Service
-public record CustomerService(CustomerRepository customerRepository, FraudClient fraudClient, NotificationClient notificationClient) {
+public record CustomerService(CustomerRepository customerRepository, FraudClient fraudClient,
+                              NotificationClient notificationClient, RabbitMQMessageProducer rabbitMQMessageProducer) {
+
 
     public void registerCustomer(CustomerRegistrationRequest request) {
         Customer customer = Customer.builder()
@@ -31,8 +34,9 @@ public record CustomerService(CustomerRepository customerRepository, FraudClient
             throw new IllegalStateException("Fraudster");
         }
 
-        notificationClient.sendNotification(new NotificationRequest(customer.getId(), customer.getEmail(), "Hello You Added Successfully"));
-
+        NotificationRequest notificationRequest = new NotificationRequest(customer.getId(), customer.getEmail(), "Hello You Added Successfully");
+//        notificationClient.sendNotification(notificationRequest);
+        rabbitMQMessageProducer.publish(notificationRequest, "internal.exchange", "internal.notification.routing-key");
     }
 
 }
