@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
  * @since 6/11/2024 - 11:35 AM
  */
 
-@FeignClient("notification")
+@FeignClient(name = "notification", url = "${clients.notification.url}")
 public interface NotificationClient {
 
     @PostMapping("api/v1/send-notification")
