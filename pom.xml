@@ -26,7 +26,7 @@
         <lombok.version>1.18.28</lombok.version>
         <spring-cloud-dependencies.version>2020.0.3</spring-cloud-dependencies.version>
         <spring.boot.maven.plugin.version>2.5.7</spring.boot.maven.plugin.version>
-        <image>ahmadreza1376/${project.artifactId}:${project.version}</image>
+        <image>localhost:5000/${project.artifactId}:${project.version}</image>
     </properties>
 
     <dependencyManagement>
@@ -77,7 +77,7 @@
 
     <build>
 
-        <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+        <pluginManagement>
             <plugins>
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
@@ -91,28 +91,31 @@
                         </execution>
                     </executions>
                 </plugin>
-
                 <plugin>
                     <groupId>com.google.cloud.tools</groupId>
                     <artifactId>jib-maven-plugin</artifactId>
                     <version>3.1.4</version>
                     <configuration>
                         <from>
-                            <image>
-                                eclipse-temurin:17@sha256:2b47a8ea946ce1e5365a1562414ed576e378b7b670cadff3fb98ebecf2890cdc
-                            </image>
+                            <image>eclipse-temurin:17@sha256:2b47a8ea946ce1e5365a1562414ed576e378b7b670cadff3fb98ebecf2890cdc</image>
                         </from>
                         <to>
+                            <image>localhost:5000/${project.artifactId}:${project.version}</image>
+                            <auth>
+                                <username></username>
+                                <password></password>
+                            </auth>
                             <tags>
                                 <tag>latest</tag>
                             </tags>
                         </to>
+                        <allowInsecureRegistries>true</allowInsecureRegistries>
                     </configuration>
                     <executions>
                         <execution>
                             <phase>package</phase>
                             <goals>
-                                <goal>dockerBuild</goal>
+                                <goal>build</goal>
                             </goals>
                         </execution>
                     </executions>
